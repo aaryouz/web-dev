@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid">
+        <h1>Quote</h1>
+        <p>A share of {{ stock.name }} ({{ stock.symbol }}) costs {{ stock.price | usd }}.</p>
+        <a href="/quote" class="btn btn-primary">Quote Another</a>
+    </div>
+{% endblock %}

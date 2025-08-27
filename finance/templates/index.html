@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Shares</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for holding in holdings %}
+                    <tr>
+                        <td>{{ holding.symbol }}</td>
+                        <td>{{ holding.name }}</td>
+                        <td>{{ holding.total_shares }}</td>
+                        <td>{{ holding.price | usd }}</td>
+                        <td>{{ holding.total | usd }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="4"><strong>CASH</strong></td>
+                    <td><strong>{{ cash | usd }}</strong></td>
+                </tr>
+                <tr style="border-top: 2px solid black;">
+                    <td colspan="4"><strong>TOTAL</strong></td>
+                    <td><strong>{{ total_value | usd }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
