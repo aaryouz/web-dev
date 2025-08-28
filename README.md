@@ -1,120 +1,113 @@
-# Finance Portfolio Tracker
+# Web Development Projects Collection
 
-A Flask-based web application for tracking stock portfolios, allowing users to buy and sell stocks with real-time pricing data.
+A comprehensive collection of 5 web development projects showcasing progression from basic HTML to advanced Django and Flask applications, built as part of CS50's Web Programming with Python and JavaScript course.
 
-## Features
+## Projects Overview
 
-- **User Authentication**: Secure user registration and login system
-- **Stock Portfolio Management**: Track your stock holdings and cash balance
-- **Real-time Stock Quotes**: Get current stock prices using live market data
-- **Buy/Sell Stocks**: Execute stock transactions with validation
-- **Transaction History**: View complete trading history
-- **Portfolio Overview**: Dashboard showing current holdings and total portfolio value
+### 🔍 [Web0 - Search](./Web0/)
+**HTML/CSS Frontend** - Google Search Clone
+- Clean, responsive search interface mimicking Google's design
+- Advanced search functionality with filters
+- Image search with grid layout
+- Pure HTML/CSS implementation focusing on UI/UX fundamentals
+
+### 📚 [Web1 - Wiki](./Web1/)
+**Django Application** - Encyclopedia Platform
+- Full-featured wiki encyclopedia with Markdown support
+- Create, edit, and search encyclopedia entries
+- Random page functionality
+- Django templates and URL routing
+- File-based entry storage system
+
+### 🛒 [Web2 - Commerce](./Web2/)
+**Django E-commerce** - Auction Site
+- Complete auction platform with user authentication
+- Create listings, place bids, and manage watchlists
+- Category-based browsing and search functionality
+- Django models, forms, and admin integration
+- User dashboard with active listings and bid history
+
+### 📧 [Web3 - Mail](./Web3/)
+**Single Page Application** - Email Client
+- Gmail-like interface built with JavaScript and Django REST API
+- Send, receive, and organize emails
+- Mark emails as read/unread and archive functionality
+- Dynamic content loading without page refresh
+- Modern SPA architecture with Django backend
+
+### 💰 [Finance - Portfolio Tracker](./finance/)
+**Flask Application** - Stock Trading Platform
+- Real-time stock portfolio management
+- Buy/sell stocks with live pricing data
+- User authentication and session management
+- Transaction history and portfolio analytics
+- Integration with financial APIs
 
 ## Technologies Used
 
-- **Backend**: Python Flask
-- **Database**: SQLite with CS50 SQL library
-- **Session Management**: Flask-Session
-- **Security**: Werkzeug password hashing
-- **Stock Data**: CS50 Finance API for real-time quotes
-- **Frontend**: HTML templates with Jinja2
+| Project | Frontend | Backend | Database | Key Features |
+|---------|----------|---------|----------|--------------|
+| Web0 | HTML, CSS | None | None | Responsive design, CSS Grid/Flexbox |
+| Web1 | HTML, Django Templates | Django | File system | Markdown rendering, CRUD operations |
+| Web2 | HTML, Django Templates | Django | SQLite | User auth, Forms, Admin panel |
+| Web3 | JavaScript, HTML | Django REST | SQLite | AJAX, SPA architecture, API design |
+| Finance | HTML, Jinja2 | Flask | SQLite | Session management, Real-time data |
 
-## Installation
+## Getting Started
 
-1. Clone the repository:
+Each project is contained in its own directory with specific setup instructions. Generally:
+
+1. **Clone the repository:**
 ```bash
-git clone <repository-url>
-cd Finance/finance
+git clone https://github.com/aaryouz/web-dev.git
+cd web-dev
 ```
 
-2. Install required dependencies:
+2. **Navigate to desired project:**
 ```bash
-pip install -r requirements.txt
+cd Web1/wiki  # Example for Django wiki project
 ```
 
-3. Set up the database:
+3. **Install dependencies and run:**
 ```bash
-# The application will create finance.db automatically on first run
-```
+# For Django projects
+pip install django
+python manage.py migrate
+python manage.py runserver
 
-## Usage
-
-1. Start the Flask development server:
-```bash
+# For Flask projects
+pip install flask cs50
 flask run
 ```
 
-2. Open your browser and navigate to `http://localhost:5000`
+## Learning Progression
 
-3. Register a new account or login with existing credentials
+This collection demonstrates progressive learning in web development:
 
-4. Use the application to:
-   - View your portfolio on the homepage
-   - Get stock quotes by symbol
-   - Buy stocks (if you have sufficient cash)
-   - Sell stocks from your holdings
-   - View your transaction history
+1. **Web0**: Foundation in HTML/CSS and responsive design
+2. **Web1**: Introduction to Django framework and server-side rendering
+3. **Web2**: Advanced Django with user authentication and database relations
+4. **Web3**: Modern SPA development with JavaScript and REST APIs
+5. **Finance**: Flask framework with session management and external API integration
 
-## Project Structure
+## Project Highlights
 
-```
-finance/
-├── app.py              # Main Flask application
-├── helpers.py          # Utility functions
-├── finance.db          # SQLite database
-├── requirements.txt    # Python dependencies
-├── static/            # CSS and static assets
-│   ├── styles.css
-│   ├── favicon.ico
-│   └── I_heart_validator.png
-└── templates/         # HTML templates
-    ├── layout.html    # Base template
-    ├── index.html     # Portfolio dashboard
-    ├── login.html     # Login form
-    ├── register.html  # Registration form
-    ├── quote.html     # Stock quote lookup
-    ├── quoted.html    # Quote results
-    ├── buy.html       # Buy stocks form
-    ├── sell.html      # Sell stocks form
-    ├── history.html   # Transaction history
-    └── apology.html   # Error messages
-```
+- **Responsive Design**: All projects implement mobile-first, responsive layouts
+- **Security**: Proper authentication, CSRF protection, and input validation
+- **Database Design**: Efficient schema design with proper relationships
+- **API Integration**: Real-time data fetching from external services
+- **Modern Architecture**: Progression from server-side rendering to SPA patterns
 
-## Key Features
+## Course Context
 
-### Portfolio Dashboard
-- Real-time portfolio valuation
-- Current stock holdings with live prices
-- Cash balance tracking
-- Total portfolio value calculation
-
-### Stock Trading
-- Input validation for stock symbols and share quantities
-- Real-time price lookup before transactions
-- Sufficient funds/shares verification
-- Transaction recording with timestamps
-
-### Security
-- Password hashing using Werkzeug
-- Session-based authentication
-- Login required decorators for protected routes
-- SQL injection protection using parameterized queries
-
-## Database Schema
-
-The application uses SQLite with the following tables:
-- `users`: User accounts with hashed passwords and cash balances
-- `transactions`: All buy/sell transactions with timestamps
-
-## Dependencies
-
-- `cs50`: CS50's SQL library for database operations
-- `Flask`: Web framework
-- `Flask-Session`: Session management
-- `pytz`: Timezone handling
-- `requests`: HTTP requests for stock data
+These projects were developed as part of **CS50's Web Programming with Python and JavaScript**, demonstrating practical application of:
+- Frontend technologies (HTML, CSS, JavaScript)
+- Backend frameworks (Django, Flask)
+- Database design and management
+- User authentication and security
+- API design and consumption
+- Modern web development patterns
 
 ## License
 
-This project is part of CS50's Introduction to Computer Science course.
+This project collection is part of CS50's Web Programming with Python and JavaScript course.

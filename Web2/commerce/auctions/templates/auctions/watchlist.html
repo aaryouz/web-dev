@@ -1,0 +1,127 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}My Watchlist - Auctions{% endblock %}
+
+{% block body %}
+    <h2>My Watchlist</h2>
+    <p class="text-muted">Items you're watching</p>
+
+    {% if watchlist_items %}
+        <div class="row">
+            {% for item in watchlist_items %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        {% if item.listing.image_url %}
+                            <img class="card-img-top" src="{{ item.listing.image_url }}" alt="{{ item.listing.title }}" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                <span class="text-muted">No Image</span>
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{% url 'listing_detail' item.listing.id %}" class="text-decoration-none">
+                                    {{ item.listing.title }}
+                                </a>
+                            </h5>
+                            <p class="card-text">{{ item.listing.description|truncatewords:15 }}</p>
+                            
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="h5 text-success">${{ item.listing.current_price }}</span>
+                                {% if item.listing.active %}
+                                    <span class="badge badge-success">Active</span>
+                                {% else %}
+                                    <span class="badge badge-secondary">Closed</span>
+                                {% endif %}
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <small class="text-muted">{{ item.listing.category.name }}</small>
+                                <small class="text-muted">
+                                    {% if item.listing.bids.count > 0 %}
+                                        {{ item.listing.bids.count }} bid{{ item.listing.bids.count|pluralize }}
+                                    {% else %}
+                                        No bids yet
+                                    {% endif %}
+                                </small>
+                            </div>
+
+                            <small class="text-muted d-block mb-3">
+                                Added to watchlist on {{ item.created_at|date:"M d, Y" }}
+                            </small>
+
+                            <div class="btn-group btn-group-sm d-flex" role="group">
+                                <a href="{% url 'listing_detail' item.listing.id %}" class="btn btn-primary">View Details</a>
+                                <form method="post" action="{% url 'remove_from_watchlist' item.listing.id %}" class="flex-fill">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger btn-sm w-100" 
+                                            onclick="return confirm('Remove from watchlist?')">
+                                        Remove
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Show if user is winning -->
+                            {% with highest_bid=item.listing.get_highest_bid %}
+                                {% if item.listing.active and highest_bid and highest_bid.user == user %}
+                                    <div class="alert alert-success mt-2 py-2" role="alert">
+                                        <small><strong>You're winning!</strong> Current high bid: ${{ item.listing.current_price }}</small>
+                                    </div>
+                                {% endif %}
+
+                                <!-- Show if auction ended and user won -->
+                                {% if not item.listing.active and highest_bid and highest_bid.user == user %}
+                                    <div class="alert alert-success mt-2 py-2" role="alert">
+                                        <small><strong>You won this auction!</strong> Final price: ${{ item.listing.current_price }}</small>
+                                    </div>
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination would go here if implemented -->
+
+    {% else %}
+        <div class="alert alert-info">
+            <h4>Your watchlist is empty</h4>
+            <p>You haven't added any items to your watchlist yet.</p>
+            <p>Browse <a href="{% url 'index' %}">active listings</a> or 
+               <a href="{% url 'categories' %}">categories</a> to find items you're interested in.</p>
+        </div>
+    {% endif %}
+
+    <!-- Watchlist Summary -->
+    {% if watchlist_items %}
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Watchlist Summary</h5>
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <h4 class="text-primary">{{ watchlist_items|length }}</h4>
+                        <small class="text-muted">Total Items</small>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="text-success">{{ active_count }}</h4>
+                        <small class="text-muted">Active Auctions</small>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="text-warning">{{ winning_count }}</h4>
+                        <small class="text-muted">You're Winning</small>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="text-info">{{ won_count }}</h4>
+                        <small class="text-muted">Auctions Won</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="mt-4">
+        <a href="{% url 'index' %}" class="btn btn-secondary">← Browse More Listings</a>
+        <a href="{% url 'categories' %}" class="btn btn-outline-secondary ml-2">Browse by Category</a>
+    </div>
+{% endblock %}

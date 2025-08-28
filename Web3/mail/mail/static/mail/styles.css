@@ -1,0 +1,120 @@
+textarea {
+    min-height: 400px;
+}
+
+/* Email list styling */
+.email-item {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.email-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+    border-color: #007bff;
+}
+
+.email-item.read {
+    background-color: #f8f9fa !important;
+    color: #6c757d;
+}
+
+.email-item.unread {
+    background-color: white !important;
+    font-weight: bold;
+    color: #212529;
+    border-left: 4px solid #007bff;
+}
+
+/* Email detail view styling */
+#email-view .card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#email-view .card-header {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    color: white;
+    border-radius: 0.375rem 0.375rem 0 0;
+}
+
+#email-view .card-header h4 {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.email-meta p {
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.email-actions {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 1rem;
+}
+
+.email-actions .btn {
+    margin-right: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.email-actions .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.email-body {
+    line-height: 1.6;
+    font-size: 0.95rem;
+    color: #495057;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    border-left: 3px solid #007bff;
+}
+
+/* Back button styling */
+.btn-secondary {
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+    transform: translateY(-1px);
+}
+
+/* Compose form enhancements */
+#compose-view .form-group label {
+    font-weight: 600;
+    color: #495057;
+}
+
+#compose-view .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Navigation styling */
+.nav-link {
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .email-item .row > div {
+        margin-bottom: 0.25rem;
+    }
+    
+    .email-actions .btn {
+        margin-bottom: 0.5rem;
+        width: 100%;
+    }
+}
