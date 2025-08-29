@@ -1,0 +1,152 @@
+body {
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+/* Custom styles for the auction site */
+.card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #dee2e6;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-img-top {
+    transition: opacity 0.2s;
+}
+
+.card:hover .card-img-top {
+    opacity: 0.9;
+}
+
+/* Auction status badges */
+.badge {
+    font-size: 0.8em;
+}
+
+/* Navigation improvements */
+.nav-link:hover {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 4px;
+}
+
+/* Price styling */
+.text-success {
+    font-weight: 600;
+}
+
+/* Form improvements */
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* Message alerts */
+.alert {
+    border-left: 4px solid;
+    margin-bottom: 1rem;
+}
+
+.alert-success {
+    border-left-color: #28a745;
+}
+
+.alert-danger {
+    border-left-color: #dc3545;
+}
+
+.alert-warning {
+    border-left-color: #ffc107;
+}
+
+.alert-info {
+    border-left-color: #17a2b8;
+}
+
+/* Bid history styling */
+.bid-history {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Watchlist heart icon */
+.btn:hover {
+    transform: scale(1.05);
+    transition: transform 0.1s;
+}
+
+/* Comment section */
+.media {
+    padding: 0.5rem 0;
+}
+
+.media + .media {
+    border-top: 1px solid #dee2e6;
+}
+
+/* Category cards */
+.category-card {
+    border-left: 4px solid #007bff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-columns {
+        column-count: 1;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        border-radius: 0.25rem !important;
+        margin-bottom: 0.25rem;
+    }
+}
+
+/* Listing detail page improvements */
+.listing-image {
+    max-height: 500px;
+    object-fit: contain;
+    width: 100%;
+}
+
+/* Statistics cards */
+.stat-card {
+    border: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.stat-card .card-body {
+    padding: 1.5rem;
+}
+
+/* Loading states */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Custom scrollbar for bid history */
+.bid-history::-webkit-scrollbar {
+    width: 6px;
+}
+
+.bid-history::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.bid-history::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.bid-history::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
