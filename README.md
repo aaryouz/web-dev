@@ -1,6 +1,6 @@
 # Web Development Projects Collection
 
-A comprehensive collection of 5 web development projects showcasing progression from basic HTML to advanced Django and Flask applications, built as part of CS50's Web Programming with Python and JavaScript course.
+A comprehensive collection of 6 web development projects showcasing progression from basic HTML to advanced Django and Flask applications, built as part of CS50's Web Programming with Python and JavaScript course.
 
 ## Projects Overview
 
@@ -35,6 +35,15 @@ A comprehensive collection of 5 web development projects showcasing progression 
 - Dynamic content loading without page refresh
 - Modern SPA architecture with Django backend
 
+### 🌐 [Web4 - Network](./project4/)
+**Django Social Network** - Twitter-like Social Platform
+- User registration and authentication system
+- Create, edit, and like posts
+- Follow/unfollow users functionality
+- Personalized timeline and user profiles
+- Pagination and responsive design
+- Django REST API for dynamic interactions
+
 ### 💰 [Finance - Portfolio Tracker](./finance/)
 **Flask Application** - Stock Trading Platform
 - Real-time stock portfolio management
@@ -51,6 +60,7 @@ A comprehensive collection of 5 web development projects showcasing progression 
 | Web1 | HTML, Django Templates | Django | File system | Markdown rendering, CRUD operations |
 | Web2 | HTML, Django Templates | Django | SQLite | User auth, Forms, Admin panel |
 | Web3 | JavaScript, HTML | Django REST | SQLite | AJAX, SPA architecture, API design |
+| Web4 | JavaScript, HTML, Django Templates | Django | SQLite | Social features, Follow system, REST API |
 | Finance | HTML, Jinja2 | Flask | SQLite | Session management, Real-time data |
 
 ## Getting Started
@@ -66,6 +76,7 @@ cd web-dev
 2. **Navigate to desired project:**
 ```bash
 cd Web1/wiki  # Example for Django wiki project
+cd project4   # Example for Django social network project
 ```
 
 3. **Install dependencies and run:**
@@ -88,7 +99,8 @@ This collection demonstrates progressive learning in web development:
 2. **Web1**: Introduction to Django framework and server-side rendering
 3. **Web2**: Advanced Django with user authentication and database relations
 4. **Web3**: Modern SPA development with JavaScript and REST APIs
-5. **Finance**: Flask framework with session management and external API integration
+5. **Web4**: Full-featured social network with advanced Django patterns and user interactions
+6. **Finance**: Flask framework with session management and external API integration
 
 ## Project Highlights
 
