@@ -1,0 +1,107 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2>Following</h2>
+        <p class="text-muted mb-4">Posts from people you follow</p>
+
+        <!-- Posts Display -->
+        <div id="posts">
+            {% for post in posts %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h6 class="card-title mb-0">
+                                <a href="{% url 'profile' post.author.username %}" class="text-decoration-none">
+                                    <strong>{{ post.author.username }}</strong>
+                                </a>
+                            </h6>
+                            <small class="text-muted">{{ post.timestamp|date:"M d, Y, g:i A" }}</small>
+                        </div>
+                        
+                        <div class="post-content mb-3" id="post-content-{{ post.id }}">
+                            {{ post.content }}
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                {% if user.is_authenticated %}
+                                    <button class="btn btn-sm btn-link like-btn p-0 mr-3" 
+                                            data-post-id="{{ post.id }}" 
+                                            data-liked="{% if user in post.likes.all %}true{% else %}false{% endif %}">
+                                        <i class="{% if user in post.likes.all %}fas fa-heart text-danger{% else %}far fa-heart{% endif %}"></i>
+                                        <span class="like-text ml-1">
+                                            {% if user in post.likes.all %}Unlike{% else %}Like{% endif %}
+                                        </span>
+                                    </button>
+                                {% endif %}
+                                <span class="text-muted">
+                                    <i class="fas fa-heart text-danger"></i>
+                                    <span id="like-count-{{ post.id }}">{{ post.like_count }}</span>
+                                    {% if post.like_count == 1 %}like{% else %}likes{% endif %}
+                                </span>
+                            </div>
+                            
+                            {% if user.is_authenticated and user == post.author %}
+                                <button class="btn btn-sm btn-outline-secondary edit-btn" data-post-id="{{ post.id }}">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="text-center text-muted mt-5">
+                    <div class="mb-3">
+                        <svg width="64" height="64" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                            <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002A.274.274 0 0 1 15 13H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+                        </svg>
+                    </div>
+                    <h5>No posts to show</h5>
+                    <p>You're not following anyone yet, or the people you follow haven't posted anything.</p>
+                    <p>
+                        <a href="{% url 'index' %}" class="btn btn-primary">Discover Posts</a>
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if posts.has_other_pages %}
+            <nav aria-label="Posts pagination">
+                <ul class="pagination justify-content-center">
+                    {% if posts.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1">First</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a>
+                        </li>
+                    {% endif %}
+
+                    {% for page_num in posts.paginator.page_range %}
+                        {% if page_num == posts.number %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ page_num }}</span>
+                            </li>
+                        {% elif page_num > posts.number|add:'-3' and page_num < posts.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if posts.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ posts.next_page_number }}">Next</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ posts.paginator.num_pages }}">Last</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+
+{% endblock %}

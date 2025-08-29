@@ -1,0 +1,83 @@
+/* Custom styles for Network app */
+
+/* Post cards */
+.post-card {
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.post-card:hover {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Like button styling */
+.like-btn {
+    border: none !important;
+    text-decoration: none !important;
+}
+
+.like-btn:hover {
+    text-decoration: none !important;
+    background-color: transparent !important;
+}
+
+.like-btn:focus {
+    box-shadow: none !important;
+}
+
+/* Follow button styling */
+.follow-btn {
+    min-width: 100px;
+}
+
+/* Profile header */
+.profile-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+/* Form styling */
+.form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+/* Button hover effects */
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Message alerts */
+.alert {
+    border-radius: 0.5rem;
+}
+
+/* Post content */
+.post-content {
+    line-height: 1.6;
+}
+
+/* Edit form styling */
+.edit-form {
+    background-color: #f8f9fa;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Loading states */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .follow-btn {
+        min-width: 80px;
+        font-size: 0.875rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+}
